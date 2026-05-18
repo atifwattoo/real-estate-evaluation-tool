@@ -1,0 +1,38 @@
+"""
+config.py — Central settings for the Real Estate Enrichment Tool
+Put your ATTOM API key here before running.
+"""
+import os
+from pydantic_settings import BaseSettings
+
+
+class Settings(BaseSettings):
+    # ── ATTOM API ─────────────────────────────────────────────
+    ATTOM_API_KEY: str = os.getenv("ATTOM_API_KEY", "YOUR_ATTOM_API_KEY_HERE")
+    ATTOM_BASE_URL: str = "https://api.gateway.attomdata.com/propertyapi/v1.0.0"
+
+    # ── Valuation thresholds ───────────────────────────────────
+    THRESHOLD: int = 300_000          # Main investment flag line
+    LOWER_MARGIN: int = 275_000       # "MAYBE" zone start
+    UPPER_MARGIN: int = 325_000       # "MAYBE" zone end
+
+    # ── Comparable sales filters ───────────────────────────────
+    COMP_RADIUS_MILES: float = 1.0    # How far to look for comps
+    COMP_MONTHS: int = 12             # How many months back
+    MIN_COMPS_HIGH_CONF: int = 3      # Need 3+ comps for HIGH confidence
+    MIN_COMPS_MED_CONF: int = 1       # Need 1+ for MEDIUM confidence
+
+    # ── Processing ────────────────────────────────────────────
+    API_DELAY_SECONDS: float = 0.3    # Pause between ATTOM calls (rate limit)
+    MAX_CONCURRENT: int = 5           # Async workers at once
+    BATCH_SIZE: int = 50              # Properties per batch log
+
+    # ── File paths ────────────────────────────────────────────
+    INPUT_DIR: str = "input"
+    OUTPUT_DIR: str = "output"
+
+    class Config:
+        env_file = ".env"             # Can also put ATTOM_API_KEY in .env file
+
+
+settings = Settings()
