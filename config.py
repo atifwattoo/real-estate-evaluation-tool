@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     OUTPUT_DIR: str = "output"
 
     class Config:
-        env_file = ".env"             # Can also put ATTOM_API_KEY in .env file
+        env_file = ".env"
 
 
 settings = Settings()

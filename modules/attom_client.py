@@ -27,13 +27,16 @@ from config import settings
 from modules.models import PropertyDetails, ComparableSale
 
 
-HEADERS = {
-    "apikey": settings.ATTOM_API_KEY,
-    "Accept": "application/json",
-}
-
 # Sale Comparables API uses a different base URL (v2)
 COMPS_BASE_URL = "https://api.gateway.attomdata.com/property/v2"
+
+
+def _headers() -> dict:
+    """Build ATTOM request headers using the current runtime API key."""
+    return {
+        "apikey": settings.ATTOM_API_KEY,
+        "Accept": "application/json",
+    }
 
 
 def _split_address(address: str) -> tuple[str, str]:
@@ -80,7 +83,7 @@ async def get_property_detail(
     params = {"address1": address1, "address2": address2}
 
     try:
-        r = await client.get(url, headers=HEADERS, params=params, timeout=15)
+        r = await client.get(url, headers=_headers(), params=params, timeout=15)
         r.raise_for_status()
         data = r.json()
 
@@ -167,7 +170,7 @@ async def _get_comps_by_propid(
     """
     url = f"{COMPS_BASE_URL}/salescomparables/propid/{attom_id}"
     try:
-        r = await client.get(url, headers=HEADERS, timeout=15)
+        r = await client.get(url, headers=_headers(), timeout=15)
         r.raise_for_status()
         data = r.json()
         return _parse_comp_properties(data.get("property", []))
@@ -207,7 +210,7 @@ async def _get_comps_by_radius(
     }
 
     try:
-        r = await client.get(url, headers=HEADERS, params=params, timeout=15)
+        r = await client.get(url, headers=_headers(), params=params, timeout=15)
         r.raise_for_status()
         data = r.json()
         return _parse_comp_properties(data.get("property", []))

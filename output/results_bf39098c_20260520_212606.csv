@@ -1,0 +1,200 @@
+Parcel ID,Address,Investment Flag,Estimated Value,Confidence,Comp Count,Price/sqft,Sqft,Beds,Baths,Year Built,Assessed Value,Last Sale Price,Last Sale Date,Prop Type,Status,Notes
+29084040070000,"294 E SIBLEY BLVD, HARVEY, IL, 60426",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+16133190130000,"2829 W ARTHINGTON ST, CHICAGO, IL, 60612",NO,"$72,750",LOW,24,N/A,,6.0,,,N/A,N/A,,,success,24 comp(s) used | variance 195.6%
+26062110410000,"8844 S BALTIMORE AVE, CHICAGO, IL 60601",NO,"$169,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 66.2%
+16222260110000,"1529 S TRIPP AVE, CHICAGO, IL, 60623",YES,"$332,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 57.2%
+16142240400000,"3516 W CONGRESS PKY, CHICAGO, IL, 60624",NO,"$205,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 570.3%
+29032040300000,"678 E 142ND ST, DOLTON, IL, 60419",NO,"$148,000",LOW,24,N/A,,4.0,,,N/A,N/A,,,success,24 comp(s) used | variance 56.3%
+16103250010000,"4663 W WEST END AVE, CHICAGO, IL, 60644",NO,"$250,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 103.9%
+20171210350000,"5728 S THROOP ST, CHICAGO, IL, 60636",NO,"$124,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 120.9%
+20224010270000,"6718 S RHODES AVE, CHICAGO, IL, 60637",NO,"$227,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 76.0%
+25093260100000,"10231 S UNION AVE 1, CHICAGO, IL, 60628",NO,"$170,000",LOW,22,N/A,,3.0,,,N/A,N/A,,,success,22 comp(s) used | variance 52.7%
+20331010370000,"7956 S UNION AVE, CHICAGO, IL, 60620",NO,"$250,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 56.6%
+26062110420000,"8846 S BALTIMORE AVE, CHICAGO, IL 60601",NO,"$169,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 66.2%
+25153170330000,"10948 S MICHIGAN AVE, CHICAGO, IL, 60628",NO,"$121,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 77.0%
+16142160070000,"3553 W FIFTH AVE, CHICAGO, IL, 60624",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+16151180040000,"306 S KOLMAR AVE, CHICAGO, IL, 60624",YES,"$330,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 92.0%
+16092010210000,"703 N LEAMINGTON AVE, CHICAGO, IL, 60644",MAYBE,"$300,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 42.1%
+16241050070000,"1531 S KEDZIE AVE, CHICAGO, IL, 60623",MAYBE,"$285,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 106.0%
+16131060170000,"2834 W MONROE ST, CHICAGO, IL, 60612",NO,"$172,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 99.1%
+16101080360000,"4716 W RACE AVE, CHICAGO, IL, 60644",NO,"$256,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 63.8%
+20172200120000,"5737 S MORGAN ST, CHICAGO, IL, 60621",NO,"$140,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 96.8%
+20331150170000,"8049 S VINCENNES AVE, CHICAGO, IL, 60620",NO,"$251,000",LOW,25,N/A,,2.0,,,N/A,N/A,,,success,25 comp(s) used | variance 371.6%
+20194030290000,"6720 S WOOD ST, CHICAGO, IL, 60636",NO,"$120,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 71.8%
+25281250240000,"12228 S UNION AVE, CHICAGO, IL, 60628",NO,"$121,250",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 60.5%
+20184110020000,"6003 S HONORE ST 2, CHICAGO, IL, 60636",NO,"$81,250",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 127.4%
+26062110430000,"8848 S BALTIMORE AVE, CHICAGO, IL 60601",NO,"$169,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 66.2%
+25164110360000,"310 W 109TH ST, CHICAGO, IL, 60628",NO,"$105,000",LOW,21,N/A,,2.0,,,N/A,N/A,,,success,21 comp(s) used | variance 71.8%
+16142160020000,"3573 W FIFTH AVE, CHICAGO, IL, 60624",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+20272060240000,"712 E 72ND ST, CHICAGO, IL, 60619",NO,"$150,000",LOW,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 94.0%
+16222260120000,"1531 S TRIPP AVE, CHICAGO, IL, 60623",YES,"$332,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 57.2%
+16133030310000,"2836 W FLOURNOY ST, CHICAGO, IL, 60612",NO,"$250,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 108.8%
+16103280240000,"4720 W MADISON ST, CHICAGO, IL, 60644",MAYBE,"$310,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 80.7%
+20181180190000,"5741 S SEELEY AVE, CHICAGO, IL, 60636",NO,"$245,000",LOW,25,N/A,,4.0,,,N/A,N/A,,,success,25 comp(s) used | variance 44.9%
+20194070120000,"6733 S MARSHFIELD AVE, CHICAGO, IL, 60636",NO,"$83,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 154.5%
+20331080150000,"8057 S HALSTED ST, CHICAGO, IL, 60620",NO,"$246,250",LOW,24,N/A,,2.0,,,N/A,N/A,,,success,24 comp(s) used | variance 62.7%
+26062110440000,"8850 S BALTIMORE AVE, CHICAGO, IL 60601",NO,"$192,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 66.4%
+25213310190000,"11814 S WALLACE ST, CHICAGO, IL, 60628",NO,"$175,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 57.6%
+16142160010000,"3575 W FIFTH AVE, CHICAGO, IL, 60624",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+25164110150000,"311 W 108TH PL, CHICAGO, IL, 60628",NO,"$105,250",LOW,22,N/A,,3.0,,,N/A,N/A,,,success,22 comp(s) used | variance 69.9%
+16222270300000,"1532 S KEDVALE AVE, CHICAGO, IL, 60623",MAYBE,"$279,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 74.0%
+16092000320000,"720 N LEAMINGTON AVE, CHICAGO, IL, 60644",MAYBE,"$307,750",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 43.3%
+16133020390000,"2901 W HARRISON ST, CHICAGO, IL, 60612",MAYBE,"$302,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 134.7%
+16153100370000,"4722 W ARTHINGTON ST, CHICAGO, IL, 60644",MAYBE,"$299,500",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 105.7%
+20182220410000,"5748 S MARSHFIELD AVE, CHICAGO, IL, 60636",NO,"$102,500",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 133.4%
+20194060360000,"6738 S MARSHFIELD AVE, CHICAGO, IL, 60636",NO,"$73,500",LOW,24,N/A,,4.0,,,N/A,N/A,,,success,24 comp(s) used | variance 167.5%
+20321090170000,"8057 S JUSTINE ST, CHICAGO, IL, 60620",NO,"$245,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 84.4%
+31042000050000,"5100 183RD ST, TINLEY PARK, IL 60477",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+26063080380000,"9238 S ESSEX AVE, CHICAGO, IL, 60617",NO,"$213,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 40.8%
+16241060240000,"3140 W 16TH ST 1, CHICAGO, IL, 60623",NO,"$240,000",LOW,18,N/A,,,,,N/A,N/A,,,success,18 comp(s) used | variance 89.7%
+26062110450000,"8854 S BALTIMORE AVE, CHICAGO, IL 60601",NO,"$192,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 66.4%
+25212190060000,"11319 S YALE AVE, CHICAGO, IL, 60628",NO,"$85,000",LOW,25,N/A,,2.0,,,N/A,N/A,,,success,25 comp(s) used | variance 127.7%
+25212250350000,"316 W 115TH ST, CHICAGO, IL, 60628",NO,"$85,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 117.3%
+16091010190000,"724 N LOTUS AVE, CHICAGO, IL, 60644",MAYBE,"$302,500",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 77.9%
+16221170470000,"1534 S KOSTNER AVE, CHICAGO, IL, 60623",YES,"$333,500",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 443.8%
+16133060280000,"2907 W FLOURNOY ST, CHICAGO, IL, 60612",NO,"$80,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 237.3%
+16231060030000,"3621 W ROOSEVELT RD, CHICAGO, IL, 60624",YES,"$415,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 173.4%
+16151040130000,"4725 W MONROE ST, CHICAGO, IL, 60644",YES,"$330,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 78.3%
+20172200350000,"5748 S SANGAMON ST, CHICAGO, IL, 60621",NO,"$210,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 67.4%
+20214020230000,"6740 S PERRY AVE, CHICAGO, IL, 60621",NO,"$166,000",LOW,24,N/A,,4.0,,,N/A,N/A,,,success,24 comp(s) used | variance 81.3%
+29044040080000,"14215 S STATE ST, RIVERDALE, IL, 60827",NO,"$128,500",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 55.2%
+20324140320000,"8446 S GREEN ST, CHICAGO, IL, 60620",NO,"$140,500",LOW,25,N/A,,6.0,,,N/A,N/A,,,success,25 comp(s) used | variance 90.3%
+31364160230000,"4 APPLE LN, PARK FOREST, IL, 60466",NO,"$85,000",LOW,25,N/A,,2.0,,,N/A,N/A,,,success,25 comp(s) used | variance 63.3%
+26062110460000,"8856 S BALTIMORE AVE, CHICAGO, IL 60601",NO,"$192,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 66.4%
+16141200010000,"3631 W FIFTH AVE, CHICAGO, IL, 60624",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+16131210160000,"325 S SACRAMENTO BLVD, CHICAGO, IL, 60612",NO,"$220,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 181.8%
+20161210330000,"724 W 59TH ST, CHICAGO, IL, 60621",NO,"$110,000",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 104.8%
+16231290330000,"1536 S CENTRAL PARK AVE, CHICAGO, IL, 60623",YES,"$399,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 64.2%
+16133020180000,"2907 W HARRISON ST, CHICAGO, IL, 60612",MAYBE,"$275,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 150.0%
+16101020130000,"4725 W SUPERIOR ST, CHICAGO, IL, 60644",NO,"$256,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 65.3%
+20182190370000,"5748 S WOOD ST, CHICAGO, IL, 60636",NO,"$192,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 57.9%
+20194010250000,"6751 S WINCHESTER AVE, CHICAGO, IL, 60636",NO,"$120,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 90.9%
+25153170190000,"10955 S WABASH AVE, CHICAGO, IL, 60628",NO,"$90,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 107.2%
+25221080130000,"11245 S EDBROOKE AVE 1, CHICAGO, IL, 60628",NO,"$170,000",LOW,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 76.9%
+16131010220000,"12 S WHIPPLE ST, CHICAGO, IL 60601",YES,"$397,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 157.7%
+20212040150000,"344 W 65TH ST, CHICAGO, IL, 60621",NO,"$82,500",LOW,24,N/A,,6.0,,,N/A,N/A,,,success,24 comp(s) used | variance 142.5%
+25041290220000,"9000 S EGGLESTON AVE, CHICAGO, IL 60601",NO,"$192,000",MEDIUM,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 39.5%
+25034070250000,"726 E 92ND ST, CHICAGO, IL, 60619",NO,"$149,000",LOW,24,N/A,,6.0,,,N/A,N/A,,,success,24 comp(s) used | variance 83.2%
+16231260260000,"1536 S RIDGEWAY AVE, CHICAGO, IL, 60623",YES,"$370,000",LOW,23,N/A,,2.0,,,N/A,N/A,,,success,23 comp(s) used | variance 48.4%
+16133020140000,"2917 W HARRISON ST, CHICAGO, IL, 60612",NO,"$250,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 165.3%
+16023310400000,"3640 W CHICAGO AVE, CHICAGO, IL, 60651",NO,"$240,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 88.3%
+16151040120000,"4727 W MONROE ST, CHICAGO, IL, 60644",YES,"$330,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 75.7%
+20192030130000,"6327 S HONORE ST 1FL, CHICAGO, IL, 60636",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+20162210080000,"5751 S LAFAYETTE AVE, CHICAGO, IL, 60621",NO,"$160,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 223.2%
+20213020340000,"6752 S LOWE AVE, CHICAGO, IL, 60621",NO,"$130,000",LOW,25,N/A,,4.0,,,N/A,N/A,,,success,25 comp(s) used | variance 448.5%
+25292160350000,"12232 S PEORIA ST, CHICAGO, IL, 60643",NO,"$152,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 42.0%
+16131010230000,"14 S WHIPPLE ST, CHICAGO, IL 60601",YES,"$397,000",LOW,23,N/A,,3.0,,,N/A,N/A,,,success,23 comp(s) used | variance 147.1%
+25041290230000,"9004 S EGGLESTON AVE, CHICAGO, IL 60601",NO,"$192,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 40.9%
+25092000030000,"349 W 95TH ST, CHICAGO, IL, 60628",NO,"$225,000",MEDIUM,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 34.1%
+16231290340000,"1538 S CENTRAL PARK AVE, CHICAGO, IL, 60623",YES,"$399,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 64.2%
+16111020110000,"729 N SPRINGFIELD AVE, CHICAGO, IL, 60624",NO,"$238,500",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 130.5%
+16133020110000,"2923 W HARRISON ST, CHICAGO, IL, 60612",NO,"$250,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 167.6%
+16143280220000,"3649 W GRENSHAW ST, CHICAGO, IL, 60624",YES,"$478,500",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 182.8%
+25153200070000,"18 E 110TH PL, CHICAGO, IL 60601",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+16153100340000,"4728 W ARTHINGTON ST, CHICAGO, IL, 60644",MAYBE,"$299,500",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 105.7%
+31163110210000,"351 W CENTRAL AVE, MATTESON, IL, 60443",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+20172260170000,"5800 S CARPENTER ST, CHICAGO, IL, 60621",NO,"$165,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 87.5%
+20203040270000,"6759 S LOOMIS ST, CHICAGO, IL, 60636",NO,"$90,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 267.5%
+25213290070000,"11819 S EMERALD AVE, CHICAGO, IL, 60628",NO,"$120,000",LOW,23,N/A,,2.0,,,N/A,N/A,,,success,23 comp(s) used | variance 84.9%
+25041290250000,"9008 S EGGLESTON AVE, CHICAGO, IL 60601",NO,"$206,000",MEDIUM,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 38.4%
+16111010270000,"736 N SPRINGFIELD AVE, CHICAGO, IL, 60624",NO,"$237,000",LOW,21,N/A,,,,,N/A,N/A,,,success,21 comp(s) used | variance 55.1%
+16221150320000,"1538 S KILBOURN AVE, CHICAGO, IL, 60623",YES,"$345,000",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 482.3%
+16133180110000,"2933 W ARTHINGTON ST, CHICAGO, IL, 60612",NO,"$78,500",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 239.4%
+16143280230000,"3649 W GRENSHAW ST, CHICAGO, IL, 60624",YES,"$478,500",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 182.8%
+16103140070000,"4732 W MAYPOLE AVE, CHICAGO, IL, 60644",NO,"$260,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 59.4%
+20172240090000,"5800 S MAY ST, CHICAGO, IL, 60621",NO,"$75,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 223.2%
+20194100220000,"6806 S HONORE ST, CHICAGO, IL, 60636",NO,"$105,000",LOW,25,N/A,,2.0,,,N/A,N/A,,,success,25 comp(s) used | variance 90.4%
+25014090330000,"9242 S CLYDE AVE, CHICAGO, IL, 60617",NO,"$225,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 42.2%
+16112130230000,"3318 W OHIO ST 3, CHICAGO, IL, 60624",YES,"$390,000",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 46.6%
+29081010390000,"33 E 144TH ST, HARVEY, IL 60426",NO,"$85,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 145.5%
+25044090330000,"9320 S PERRY AVE, CHICAGO, IL, 60620",NO,"$160,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 48.9%
+16151180050000,"356 S KOLMAR AVE, CHICAGO, IL, 60624",YES,"$375,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 94.8%
+16111030130000,"739 N AVERS AVE, CHICAGO, IL, 60624",MAYBE,"$277,750",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 109.7%
+16241060010000,"1541 S KEDZIE AVE, CHICAGO, IL, 60623",NO,"$272,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 110.5%
+16133180080000,"2941 W ARTHINGTON ST, CHICAGO, IL, 60612",NO,"$78,500",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 239.4%
+16111240060000,"3649 W OHIO ST, CHICAGO, IL, 60624",YES,"$389,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 47.3%
+16153120080000,"4743 W ARTHINGTON ST, CHICAGO, IL, 60644",MAYBE,"$295,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 110.0%
+20194100230000,"6810 S HONORE ST, CHICAGO, IL, 60636",NO,"$91,000",LOW,25,N/A,,2.0,,,N/A,N/A,,,success,25 comp(s) used | variance 106.9%
+20172270010000,"5801 S CARPENTER ST, CHICAGO, IL, 60621",NO,"$210,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 68.5%
+21322090290000,"8514 S BUFFALO AVE, CHICAGO, IL, 60617",NO,"$215,000",MEDIUM,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 36.1%
+31163110250000,"375 W CENTRAL AVE, MATTESON, IL, 60443",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+29044010330000,"14230 S CLARK ST, RIVERDALE, IL, 60827",NO,"$150,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 47.1%
+16131100010000,"121 S SACRAMENTO AVE, CHICAGO, IL 60601",NO,"$265,000",LOW,23,N/A,,3.0,,,N/A,N/A,,,success,23 comp(s) used | variance 109.3%
+25122230050000,"9723 S CRANDON AVE, CHICAGO, IL, 60617",NO,"$119,000",LOW,24,N/A,,2.0,,,N/A,N/A,,,success,24 comp(s) used | variance 42.1%
+16112010230000,"740 N SAINT LOUIS AVE, CHICAGO, IL, 60624",NO,"$243,000",LOW,20,N/A,,4.0,,,N/A,N/A,,,success,20 comp(s) used | variance 58.3%
+16241060020000,"1543 S KEDZIE AVE, CHICAGO, IL, 60623",NO,"$272,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 110.5%
+16131040120000,"2941 W MONROE ST, CHICAGO, IL, 60612",NO,"$215,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 137.0%
+16111240040000,"3653 W OHIO ST, CHICAGO, IL, 60624",YES,"$389,500",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 47.3%
+16153120070000,"4747 W ARTHINGTON ST, CHICAGO, IL, 60644",MAYBE,"$295,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 110.0%
+20161220010000,"5801 S UNION AVE, CHICAGO, IL, 60621",NO,"$127,750",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 86.7%
+20223110060000,"6813 S CALUMET AVE, CHICAGO, IL, 60637",NO,"$180,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 100.8%
+25271050100000,"11919 S PRAIRIE AVE 1ST, CHICAGO, IL, 60628",NO,"$65,000",LOW,23,N/A,,3.0,,,N/A,N/A,,,success,23 comp(s) used | variance 169.6%
+25103280160000,"10200 S SOUTH PARK AVE, CHICAGO, IL",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+25153170200000,"10959 S WABASH AVE, CHICAGO, IL, 60628",NO,"$90,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 107.2%
+30171030380000,"216 154TH PL, CALUMET CITY, IL, 60409",NO,"$99,000",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 83.9%
+16153170200000,"740 S KENNETH AVE, CHICAGO, IL, 60624",YES,"$362,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 66.7%
+16222230330000,"1548 S KOLIN AVE, CHICAGO, IL, 60623",NO,"$273,000",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 70.4%
+31163090680000,"400 W CENTRAL AVE, MATTESON, IL, 60443",NO,"$241,000",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 44.6%
+16131100100000,"2941 W WILCOX ST, CHICAGO, IL, 60612",NO,"$265,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 113.2%
+16111240030000,"3655 W OHIO ST, CHICAGO, IL, 60624",YES,"$390,000",LOW,23,N/A,,3.0,,,N/A,N/A,,,success,23 comp(s) used | variance 47.8%
+16162210690000,"4814 W HARRISON ST, CHICAGO, IL, 60644",MAYBE,"$299,500",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 103.7%
+25103280170000,"10204 S SOUTH PARK AVE, CHICAGO, IL",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+20223060070000,"6813 S STATE ST, CHICAGO, IL, 60637",NO,"$170,000",LOW,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 234.7%
+20161220020000,"5803 S UNION AVE, CHICAGO, IL, 60621",NO,"$127,750",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 86.7%
+20201140070000,"6517 S LAFLIN ST 1, CHICAGO, IL, 60636",NO,"$190,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 52.3%
+29122020130000,"283 CRANDON AVE, CALUMET CITY, IL, 60409",NO,"$206,850",LOW,24,N/A,,6.0,,,N/A,N/A,,,success,24 comp(s) used | variance 44.4%
+16111280500000,"401 N SPRINGFIELD AVE, CHICAGO, IL, 60624",MAYBE,"$280,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 102.4%
+25034110150000,"741 E 92ND ST, CHICAGO, IL, 60619",NO,"$132,500",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 92.4%
+16232260420000,"1552 S CHRISTIANA AVE, CHICAGO, IL, 60623",MAYBE,"$320,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 60.8%
+16133090220000,"3007 W LEXINGTON ST, CHICAGO, IL, 60612",NO,"$80,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 184.1%
+16023310350000,"3658 W CHICAGO AVE, CHICAGO, IL, 60651",MAYBE,"$320,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 98.7%
+20182300030000,"5805 S PAULINA ST, CHICAGO, IL, 60636",NO,"$87,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 128.7%
+16094280160000,"4815 W WASHINGTON BLVD, CHICAGO, IL, 60644",YES,"$330,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 96.9%
+20194130260000,"6818 S PAULINA ST, CHICAGO, IL, 60636",NO,"$100,000",LOW,25,N/A,,8.0,,,N/A,N/A,,,success,25 comp(s) used | variance 130.1%
+25164030080000,"10723 S WENTWORTH AVE, CHICAGO, IL, 60628",NO,"$87,000",LOW,21,N/A,,2.0,,,N/A,N/A,,,success,21 comp(s) used | variance 91.0%
+29122080410000,"321 PAXTON AVE, CALUMET CITY, IL, 60409",NO,"$170,000",LOW,24,N/A,,2.0,,,N/A,N/A,,,success,24 comp(s) used | variance 49.8%
+25213300110000,"11829 S UNION AVE, CHICAGO, IL, 60628",NO,"$170,500",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 53.8%
+25223000110000,"11561 S STATE ST, CHICAGO, IL, 60628",NO,"$58,800",LOW,25,N/A,,5.0,,,N/A,N/A,,,success,25 comp(s) used | variance 157.3%
+16151290010000,"403 S KILBOURN AVE, CHICAGO, IL, 60624",YES,"$375,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 61.9%
+16091060270000,"744 N LARAMIE AVE, CHICAGO, IL, 60644",MAYBE,"$318,750",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 49.9%
+16232290210000,"1555 S SAWYER AVE, CHICAGO, IL, 60623",NO,"$242,500",LOW,20,N/A,,,,,N/A,N/A,,,success,20 comp(s) used | variance 83.5%
+16131200050000,"3015 W JACKSON BLVD, CHICAGO, IL, 60612",NO,"$205,000",LOW,22,N/A,,,,,N/A,N/A,,,success,22 comp(s) used | variance 110.7%
+16023040050000,"3747 W DIVISION ST, CHICAGO, IL, 60651",YES,"$367,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 72.9%
+16162210680000,"4816 W HARRISON ST, CHICAGO, IL, 60644",MAYBE,"$299,500",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 103.7%
+20161220030000,"5805 S UNION AVE, CHICAGO, IL, 60621",NO,"$127,750",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 86.7%
+20204100090000,"6823 S ABERDEEN ST, CHICAGO, IL, 60621",NO,"$138,500",LOW,24,N/A,,2.0,,,N/A,N/A,,,success,24 comp(s) used | variance 103.8%
+16142140210000,"323 S CENTRAL PARK AVE, CHICAGO, IL 60601",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+25013100470000,"9251 S STONY ISLAND AVE, CHICAGO, IL, 60617",NO,"$164,500",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 100.4%
+25121080570000,"9737 S VAN VLISSINGEN RD, CHICAGO, IL, 60617",NO,"$165,500",MEDIUM,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 37.0%
+16224280140000,"4015 W 21ST PL 1, CHICAGO, IL, 60623",MAYBE,"$312,500",LOW,25,N/A,,6.0,,,N/A,N/A,,,success,25 comp(s) used | variance 47.9%
+29024020300000,"14234 KENWOOD AVE, DOLTON, IL, 60419",NO,"$200,000",MEDIUM,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 29.3%
+16111290400000,"414 N HAMLIN AVE, CHICAGO, IL, 60624",NO,"$265,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 82.7%
+16153150040000,"804 S KOLMAR AVE, CHICAGO, IL, 60624",MAYBE,"$320,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 85.4%
+16232260430000,"1558 S CHRISTIANA AVE, CHICAGO, IL, 60623",MAYBE,"$320,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 60.8%
+16133050160000,"3021 W FLOURNOY ST, CHICAGO, IL, 60612",NO,"$78,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 179.8%
+16111210020000,"3815 W OHIO ST, CHICAGO, IL, 60624",NO,"$237,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 137.1%
+16162210340000,"4821 W CONGRESS PKY, CHICAGO, IL, 60644",NO,"$230,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 128.6%
+20171290040000,"5807 S ADA ST, CHICAGO, IL, 60636",NO,"$78,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 234.2%
+20203090110000,"6827 S JUSTINE ST, CHICAGO, IL, 60636",NO,"$85,000",LOW,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 301.7%
+25212160340000,"11346 S HARVARD AVE, CHICAGO, IL, 60628",NO,"$110,750",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 99.3%
+20353090390000,"8544 S MARYLAND AVE, CHICAGO, IL, 60619",NO,"$162,000",LOW,23,N/A,,3.0,,,N/A,N/A,,,success,23 comp(s) used | variance 123.2%
+29044300060000,"14509 S MICHIGAN AVE, RIVERDALE, IL, 60827",NO,"$148,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 41.7%
+29121100660000,"332 MADISON AVE, CALUMET CITY, IL, 60409",NO,"$211,000",LOW,24,N/A,,3.0,,,N/A,N/A,,,success,24 comp(s) used | variance 80.6%
+25021040480000,"807 E 88TH ST D, CHICAGO, IL, 60619",UNKNOWN,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+16161190310000,"414 S LARAMIE AVE, CHICAGO, IL, 60644",NO,"$211,500",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 53.6%
+29023230210000,"14418 UNIVERSITY AVE, DOLTON, IL, 60419",NO,"$140,000",LOW,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 45.9%
+16232280210000,"1559 S SPAULDING AVE, CHICAGO, IL, 60623",NO,"$255,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 75.9%
+16133170030000,"3051 W ARTHINGTON ST, CHICAGO, IL, 60612",NO,"$115,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 132.9%
+16111200420000,"3834 W FERDINAND ST, CHICAGO, IL, 60624",NO,"$218,000",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 93.8%
+16092310230000,"4826 W KINZIE ST, CHICAGO, IL, 60644",NO,"$250,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 60.0%
+20161210030000,"5807 S EMERALD AVE, CHICAGO, IL, 60621",NO,"$108,750",LOW,24,N/A,,,,,N/A,N/A,,,success,24 comp(s) used | variance 103.6%
+20194080110000,"6829 S DAMEN AVE, CHICAGO, IL, 60636",NO,"$120,000",LOW,25,N/A,,2.0,,,N/A,N/A,,,success,25 comp(s) used | variance 78.3%
+25283020300000,"12314 S LOWE AVE 4, CHICAGO, IL, 60628",NO,"$117,000",LOW,25,N/A,,5.0,,,N/A,N/A,,,success,25 comp(s) used | variance 64.8%
+25163210050000,"11013 S HALSTED ST, CHICAGO, IL, 60628",NO,"$240,000",LOW,23,N/A,,4.0,,,N/A,N/A,,,success,23 comp(s) used | variance 71.6%
+31364080270000,"338 OSWEGO ST, PARK FOREST, IL, 60466",NO,"$110,500",LOW,24,N/A,,2.0,,,N/A,N/A,,,success,24 comp(s) used | variance 44.9%
+29023240060000,"14419 UNIVERSITY AVE, DOLTON, IL, 60419",NO,"$150,000",LOW,25,N/A,,3.0,,,N/A,N/A,,,success,25 comp(s) used | variance 42.1%
+16111280170000,"417 N SPRINGFIELD AVE, CHICAGO, IL, 60624",NO,"$250,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 87.2%
+16154100360000,"808 S KEDVALE AVE, CHICAGO, IL, 60624",YES,"$355,000",LOW,25,N/A,,2.0,,,N/A,N/A,,,success,25 comp(s) used | variance 59.4%
+16241060070000,"1561 S KEDZIE AVE, CHICAGO, IL, 60623",NO,"$225,000",LOW,19,N/A,,,,,N/A,N/A,,,success,19 comp(s) used | variance 92.4%
+16133170020000,"3055 W ARTHINGTON ST, CHICAGO, IL, 60612",NO,"$115,000",LOW,23,N/A,,,,,N/A,N/A,,,success,23 comp(s) used | variance 157.8%
+16141050190000,"3842 W ADAMS ST, CHICAGO, IL, 60624",MAYBE,"$310,000",LOW,25,N/A,,,,,N/A,N/A,,,success,25 comp(s) used | variance 46.4%

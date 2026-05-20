@@ -28,10 +28,29 @@ from modules.valuation import estimate_value
 
 # Job state store (in-memory; in production use Redis or a DB)
 _jobs: dict[str, dict] = {}
+_cancelled: set[str] = set()
 
 
 def get_job(job_id: str) -> Optional[dict]:
     return _jobs.get(job_id)
+
+
+def cancel_job(job_id: str) -> bool:
+    """Mark a job for cancellation. Returns True if found, False otherwise."""
+    if job_id not in _jobs:
+        return False
+    _cancelled.add(job_id)
+    _update_job(job_id, status="cancelled", finished_at=datetime.utcnow().isoformat())
+    return True
+
+
+def list_jobs() -> list[dict]:
+    """Return all jobs sorted by start time (newest first)."""
+    jobs = []
+    for job_id, job in _jobs.items():
+        jobs.append({"job_id": job_id, **job})
+    jobs.sort(key=lambda j: j.get("started_at", ""), reverse=True)
+    return jobs
 
 
 def _update_job(job_id: str, **kwargs):
@@ -154,6 +173,9 @@ async def run_pipeline(
         ]
 
         for i, coro in enumerate(asyncio.as_completed(tasks)):
+            if job_id in _cancelled:
+                print(f"[Pipeline] Job {job_id} cancelled at {i}/{total}")
+                return results
             result = await coro
             results.append(result)
 

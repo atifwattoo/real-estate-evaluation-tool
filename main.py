@@ -15,17 +15,19 @@ THEN OPEN:
   http://localhost:8000/docs   ← Interactive API documentation
 """
 import uuid
+import shutil
 import asyncio
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
-from fastapi import FastAPI, BackgroundTasks, HTTPException
+from fastapi import FastAPI, BackgroundTasks, HTTPException, UploadFile, File, Form
 from fastapi.responses import FileResponse, JSONResponse
 
 from config import settings
 from modules.models import ProcessRequest, ProcessResponse, JobStatus
 from modules.csv_handler import load_cclba_csv, export_to_csv
-from modules.pipeline import run_pipeline, get_job
+from modules.pipeline import run_pipeline, get_job, list_jobs, cancel_job
 
 
 app = FastAPI(
@@ -241,3 +243,131 @@ def job_summary(job_id: str):
         "started_at":       job.get("started_at"),
         "finished_at":      job.get("finished_at"),
     }
+
+
+# ── Upload CSV and process ────────────────────────────────────────────────────
+
+@app.post("/upload", response_model=ProcessResponse, tags=["Processing"])
+async def upload_and_process(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    threshold: Optional[int] = Form(None),
+):
+    """
+    Upload a CSV file directly and start processing.
+    The file is saved to the input/ directory, then the pipeline runs in background.
+    Returns a job_id for polling progress.
+    """
+    if not file.filename or not file.filename.lower().endswith(".csv"):
+        raise HTTPException(status_code=400, detail="Only .csv files are accepted")
+
+    input_dir = Path(settings.INPUT_DIR)
+    input_dir.mkdir(exist_ok=True)
+
+    # Sanitise filename to prevent path traversal
+    safe_name = Path(file.filename).name
+    filepath = input_dir / safe_name
+
+    with open(filepath, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+
+    if threshold:
+        settings.THRESHOLD = threshold
+
+    try:
+        properties = load_cclba_csv(filepath)
+    except Exception as e:
+        raise HTTPException(status_code=422, detail=f"Failed to parse CSV: {str(e)}")
+
+    if not properties:
+        raise HTTPException(status_code=422, detail="No valid properties found in CSV")
+
+    job_id = str(uuid.uuid4())[:8]
+    output_file = (
+        Path(settings.OUTPUT_DIR)
+        / f"results_{job_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    )
+
+    async def run_and_save():
+        results = await run_pipeline(properties, job_id)
+        export_to_csv(results, output_file)
+
+    background_tasks.add_task(run_and_save)
+
+    return ProcessResponse(
+        job_id=job_id,
+        status="queued",
+        total=len(properties),
+        processed=0,
+        flagged_yes=0,
+        flagged_maybe=0,
+        output_file=None,
+        message=f"Uploaded '{safe_name}'. Processing {len(properties)} properties. Poll /job/{job_id}.",
+    )
+
+
+# ── List all jobs ─────────────────────────────────────────────────────────────
+
+@app.get("/jobs", tags=["Processing"])
+def get_all_jobs():
+    """Return all jobs (running and completed) sorted newest-first."""
+    return {"jobs": list_jobs()}
+
+
+# ── Runtime config update ─────────────────────────────────────────────────────
+
+@app.post("/config", tags=["System"])
+def update_config(body: dict):
+    """
+    Update runtime configuration.
+    Accepts: attom_api_key, threshold.
+    Persists attom_api_key to PostgreSQL (upsert).
+    """
+    if "attom_api_key" in body:
+        settings.ATTOM_API_KEY = str(body["attom_api_key"]).strip()
+
+    if "threshold" in body:
+        settings.THRESHOLD = int(body["threshold"])
+
+    return {"status": "ok", "message": "Configuration updated successfully"}
+
+
+# ── Cancel a running job ────────────────────────────────────────────────────
+
+@app.post("/job/{job_id}/cancel", tags=["Processing"])
+def cancel_job_endpoint(job_id: str):
+    """Cancel a running or queued job."""
+    if not cancel_job(job_id):
+        raise HTTPException(status_code=404, detail=f"Job '{job_id}' not found")
+    return {"status": "ok", "message": f"Job {job_id} cancellation requested"}
+
+
+# ── List output files ─────────────────────────────────────────────────────────
+
+@app.get("/output-files", tags=["System"])
+def list_output_files():
+    """List all CSV result files in the output/ directory, newest first."""
+    output_dir = Path(settings.OUTPUT_DIR)
+    if not output_dir.exists():
+        return {"files": []}
+    files = []
+    for f in sorted(output_dir.glob("*.csv"), key=lambda x: x.stat().st_mtime, reverse=True):
+        files.append({
+            "filename": f.name,
+            "size_kb":  round(f.stat().st_size / 1024, 1),
+            "modified": datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d %H:%M"),
+        })
+    return {"files": files}
+
+
+# ── Download output file by name ───────────────────────────────────────────────
+
+@app.get("/output/{filename}", tags=["Processing"])
+def download_output_file(filename: str):
+    """Download any output CSV file by filename."""
+    safe_name  = Path(filename).name   # prevent path traversal
+    output_dir = Path(settings.OUTPUT_DIR)
+    filepath   = output_dir / safe_name
+    if not filepath.exists() or not filepath.is_file():
+        raise HTTPException(status_code=404, detail=f"File '{safe_name}' not found")
+    return FileResponse(path=filepath, media_type="text/csv", filename=safe_name)
