@@ -117,7 +117,7 @@ def load_cclba_csv(filepath: str | Path) -> List[RawProperty]:
     df = df[df["address"].notna() & (df["address"].str.strip() != "")]
 
     # Step 3: Deduplicate by parcel ID
-    before = len(df)
+    before = len(df) # Save original length before removing duplicates
     df = df.drop_duplicates(subset=["parcel_id"])
     dupes_removed = before - len(df)
 
