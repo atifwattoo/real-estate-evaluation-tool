@@ -13,8 +13,13 @@ class Settings(BaseSettings):
 
     # ── Valuation thresholds ───────────────────────────────────
     THRESHOLD: int = 300_000          # Main investment flag line
-    LOWER_MARGIN: int = 275_000       # "MAYBE" zone start
-    UPPER_MARGIN: int = 325_000       # "MAYBE" zone end
+
+    MARGIN_PERCENT: float = 0.25      # 25% margin around threshold
+
+    MARGIN_VALUE: int = int(THRESHOLD * MARGIN_PERCENT)
+
+    LOWER_MARGIN: int = THRESHOLD - MARGIN_VALUE       # "MAYBE" zone start
+    UPPER_MARGIN: int = THRESHOLD + MARGIN_VALUE       # "MAYBE" zone end
 
     # ── Comparable sales filters ───────────────────────────────
     COMP_RADIUS_MILES: float = 1.0    # How far to look for comps
