@@ -50,6 +50,43 @@ app = FastAPI(
 )
 
 
+def _apply_threshold(threshold: Optional[int]):
+    if threshold is None:
+        return
+    if threshold <= 0:
+        raise HTTPException(status_code=400, detail="threshold must be greater than 0")
+    settings.THRESHOLD = int(threshold)
+
+
+def _normalise_margin_percent(value) -> float:
+    margin_percent = float(value)
+    if margin_percent < 0:
+        raise ValueError("margin_percent must be 0 or greater")
+    if margin_percent > 1:
+        margin_percent = margin_percent / 100
+    return margin_percent
+
+
+def _apply_margin_percent(value):
+    if value is None:
+        return
+    try:
+        settings.MARGIN_PERCENT = _normalise_margin_percent(value)
+    except (TypeError, ValueError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+def _config_snapshot() -> dict:
+    return {
+        "threshold": settings.THRESHOLD,
+        "margin_percent": settings.MARGIN_PERCENT,
+        "margin_percentage": round(settings.MARGIN_PERCENT * 100, 2),
+        "margin_value": settings.MARGIN_VALUE,
+        "lower_margin": settings.LOWER_MARGIN,
+        "upper_margin": settings.UPPER_MARGIN,
+    }
+
+
 # ── Health check ─────────────────────────────────────────────────────────────
 
 @app.get("/health", tags=["System"])
@@ -60,6 +97,9 @@ def health():
         "status":       "ok",
         "attom_key_set": key_set,
         "threshold":    f"${settings.THRESHOLD:,}",
+        "margin_percent": settings.MARGIN_PERCENT,
+        "lower_margin": f"${settings.LOWER_MARGIN:,}",
+        "upper_margin": f"${settings.UPPER_MARGIN:,}",
         "version":      "1.0.0",
     }
 
@@ -87,12 +127,15 @@ async def process_csv(request: ProcessRequest, background_tasks: BackgroundTasks
         )
 
     # Override threshold if provided
-    if request.threshold:
-        settings.THRESHOLD = request.threshold
+    _apply_threshold(request.threshold)
 
     # Load and validate CSV
     try:
-        properties = load_cclba_csv(filepath)
+        properties = load_cclba_csv(
+            filepath,
+            skiprows=request.skiprows,
+            count=request.count,
+        )
     except Exception as e:
         raise HTTPException(status_code=422, detail=f"Failed to parse CSV: {str(e)}")
 
@@ -252,6 +295,9 @@ async def upload_and_process(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     threshold: Optional[int] = Form(None),
+    count: Optional[int] = Form(None),
+    skiprows: int = Form(0),
+    margin_percent: Optional[float] = Form(None),
 ):
     """
     Upload a CSV file directly and start processing.
@@ -271,11 +317,11 @@ async def upload_and_process(
     with open(filepath, "wb") as f:
         shutil.copyfileobj(file.file, f)
 
-    if threshold:
-        settings.THRESHOLD = threshold
+    _apply_threshold(threshold)
+    _apply_margin_percent(margin_percent)
 
     try:
-        properties = load_cclba_csv(filepath)
+        properties = load_cclba_csv(filepath, skiprows=skiprows, count=count)
     except Exception as e:
         raise HTTPException(status_code=422, detail=f"Failed to parse CSV: {str(e)}")
 
@@ -320,16 +366,23 @@ def get_all_jobs():
 def update_config(body: dict):
     """
     Update runtime configuration.
-    Accepts: attom_api_key, threshold.
+    Accepts: attom_api_key, threshold, margin_percent, margin_percentage.
     Persists attom_api_key to PostgreSQL (upsert).
     """
     if "attom_api_key" in body:
         settings.ATTOM_API_KEY = str(body["attom_api_key"]).strip()
 
     if "threshold" in body:
-        settings.THRESHOLD = int(body["threshold"])
+        _apply_threshold(int(body["threshold"]))
 
-    return {"status": "ok", "message": "Configuration updated successfully"}
+    margin_value = body.get("margin_percent", body.get("margin_percentage"))
+    _apply_margin_percent(margin_value)
+
+    return {
+        "status": "ok",
+        "message": "Configuration updated successfully",
+        "config": _config_snapshot(),
+    }
 
 
 # ── Cancel a running job ────────────────────────────────────────────────────

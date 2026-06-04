@@ -16,10 +16,17 @@ class Settings(BaseSettings):
 
     MARGIN_PERCENT: float = 0.25      # 25% margin around threshold
 
-    MARGIN_VALUE: int = int(THRESHOLD * MARGIN_PERCENT)
+    @property
+    def MARGIN_VALUE(self) -> int:
+        return int(self.THRESHOLD * self.MARGIN_PERCENT)
 
-    LOWER_MARGIN: int = THRESHOLD - MARGIN_VALUE       # "MAYBE" zone start
-    UPPER_MARGIN: int = THRESHOLD + MARGIN_VALUE       # "MAYBE" zone end
+    @property
+    def LOWER_MARGIN(self) -> int:
+        return self.THRESHOLD - self.MARGIN_VALUE      # "MAYBE" zone start
+
+    @property
+    def UPPER_MARGIN(self) -> int:
+        return self.THRESHOLD + self.MARGIN_VALUE      # "MAYBE" zone end
 
     # ── Comparable sales filters ───────────────────────────────
     COMP_RADIUS_MILES: float = 1.0    # How far to look for comps

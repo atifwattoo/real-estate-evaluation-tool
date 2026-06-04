@@ -10,7 +10,7 @@ from enum import Enum
 class InvestmentFlag(str, Enum):
     YES   = "YES"
     NO    = "NO"
-    MAYBE = "MAYBE"   # In the $275K–$325K margin zone
+    MAYBE = "MAYBE"   # In the configured threshold margin zone
     UNKNOWN = "UNKNOWN"  # Could not estimate
 
 
@@ -107,7 +107,17 @@ class EnrichedProperty(BaseModel):
 
 class ProcessRequest(BaseModel):
     filename: str = Field(..., description="CSV filename in the input/ folder")
-    threshold: Optional[int] = Field(None, description="Override default $300K threshold")
+    threshold: Optional[int] = Field(None, gt=0, description="Override default $300K threshold")
+    count: Optional[int] = Field(
+        None,
+        ge=0,
+        description="Maximum cleaned properties to process. Omit, null, or 0 to process all.",
+    )
+    skiprows: int = Field(
+        0,
+        ge=0,
+        description="Number of rows to skip before reading the CSV header.",
+    )
 
 
 class ProcessResponse(BaseModel):

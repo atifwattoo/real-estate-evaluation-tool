@@ -2,7 +2,7 @@
 csv_handler.py — Reads and cleans the CCLBA CSV format.
 
 The CCLBA CSV has a quirky format:
-  - First 4 rows are metadata/filters (we skip them)
+  - Some exports have metadata/filter rows before the header (configurable skip)
   - Parcel IDs are wrapped in Excel formula format: ="31042000050000"
   - Some addresses are missing ZIP codes (~49 out of 981)
   - Owners column is always "-" (blank data — enrichment fills this)
@@ -95,10 +95,15 @@ def _normalize_address(address: str) -> str:
     return address
 
 
-def load_cclba_csv(filepath: str | Path) -> List[RawProperty]:
+def load_cclba_csv(
+    filepath: str | Path,
+    skiprows: int = 0,
+    count: int | None = None,
+) -> List[RawProperty]:
     """
-    Main entry point. Reads the CCLBA CSV, skips header rows,
-    cleans Parcel IDs, fills missing ZIPs, deduplicates.
+    Main entry point. Reads the CCLBA CSV, optionally skips header rows,
+    cleans Parcel IDs, fills missing ZIPs, deduplicates, and optionally limits
+    how many cleaned properties are returned.
 
     Returns a list of RawProperty objects ready for the pipeline.
     """
@@ -106,8 +111,12 @@ def load_cclba_csv(filepath: str | Path) -> List[RawProperty]:
     if not filepath.exists():
         raise FileNotFoundError(f"CSV not found: {filepath}")
 
-    # Skip first 4 rows (filter metadata added by CCLBA export)
-    df = pd.read_csv(filepath, skiprows=4)
+    if skiprows < 0:
+        raise ValueError("skiprows must be 0 or greater")
+    if count is not None and count < 0:
+        raise ValueError("count must be 0 or greater")
+
+    df = pd.read_csv(filepath, skiprows=skiprows)
     df.columns = ["parcel_id", "address", "owners"]
 
     # Step 1: Clean parcel IDs
@@ -126,6 +135,9 @@ def load_cclba_csv(filepath: str | Path) -> List[RawProperty]:
 
     # Step 5: Normalize address formatting
     df["address"] = df["address"].apply(_normalize_address)
+
+    if count:
+        df = df.head(count)
 
     print(f"[CSV] Loaded {len(df)} properties ({dupes_removed} duplicates removed)")
     print(f"[CSV] Cities: {df['address'].str.extract(r', ([^,]+), IL')[0].value_counts().head(5).to_dict()}")
