@@ -299,41 +299,14 @@ def job_summary(job_id: str):
 
 # ── Upload CSV and process ────────────────────────────────────────────────────
 
-@app.post("/upload", response_model=ProcessResponse, tags=["Processing"])
-async def upload_and_process(
-    background_tasks: BackgroundTasks,
+@app.post("/upload", tags=["System"])
+async def upload_file(
     file: UploadFile = File(...),
-    threshold: Optional[int] = Form(None),
-    count: Optional[int] = Form(None),
-    skiprows: int = Form(0),
-    margin_percent: Optional[float] = Form(None),
-    searchType: Optional[str] = Form(None),
-    minComps: Optional[int] = Form(None),
-    maxComps: Optional[int] = Form(None),
-    miles: Optional[float] = Form(None),
-    sameCity: Optional[bool] = Form(None),
-    useSameTargetCode: Optional[bool] = Form(None),
-    useCode: Optional[str] = Form(None),
-    bedroomsRange: Optional[int] = Form(None),
-    bathroomRange: Optional[int] = Form(None),
-    sqFeetRange: Optional[int] = Form(None),
-    lotSizeRange: Optional[int] = Form(None),
-    onlyPropertiesWithPool: Optional[bool] = Form(None),
-    saleDateRange: Optional[int] = Form(None),
-    saleAmountRangeFrom: Optional[int] = Form(None),
-    saleAmountRangeTo: Optional[int] = Form(None),
-    unitNumberRange: Optional[int] = Form(None),
-    yearBuiltRange: Optional[int] = Form(None),
-    storiesRange: Optional[int] = Form(None),
-    include0SalesAmounts: Optional[bool] = Form(None),
-    includeFullSalesOnly: Optional[bool] = Form(None),
-    ownerOccupied: Optional[str] = Form(None),
-    distressed: Optional[str] = Form(None),
 ):
     """
-    Upload a CSV file directly and start processing.
-    The file is saved to the input/ directory, then the pipeline runs in background.
-    Returns a job_id for polling progress.
+    Upload a CSV file directly.
+    The file is saved to the input/ directory.
+    Returns the filename and path.
     """
     if not file.filename or not file.filename.lower().endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only .csv files are accepted")
@@ -348,65 +321,11 @@ async def upload_and_process(
     with open(filepath, "wb") as f:
         shutil.copyfileobj(file.file, f)
 
-    _apply_threshold(threshold)
-    _apply_margin_percent(margin_percent)
-
-    try:
-        properties = load_cclba_csv(filepath, skiprows=skiprows, count=count)
-    except Exception as e:
-        raise HTTPException(status_code=422, detail=f"Failed to parse CSV: {str(e)}")
-
-    if not properties:
-        raise HTTPException(status_code=422, detail="No valid properties found in CSV")
-
-    job_id = str(uuid.uuid4())[:8]
-    output_file = (
-        Path(settings.OUTPUT_DIR)
-        / f"results_{job_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-    )
-
-    comps_kwargs_raw = {
-        "searchType": searchType,
-        "minComps": minComps,
-        "maxComps": maxComps,
-        "miles": miles,
-        "sameCity": sameCity,
-        "useSameTargetCode": useSameTargetCode,
-        "useCode": useCode,
-        "bedroomsRange": bedroomsRange,
-        "bathroomRange": bathroomRange,
-        "sqFeetRange": sqFeetRange,
-        "lotSizeRange": lotSizeRange,
-        "onlyPropertiesWithPool": onlyPropertiesWithPool,
-        "saleDateRange": saleDateRange,
-        "saleAmountRangeFrom": saleAmountRangeFrom,
-        "saleAmountRangeTo": saleAmountRangeTo,
-        "unitNumberRange": unitNumberRange,
-        "yearBuiltRange": yearBuiltRange,
-        "storiesRange": storiesRange,
-        "include0SalesAmounts": include0SalesAmounts,
-        "includeFullSalesOnly": includeFullSalesOnly,
-        "ownerOccupied": ownerOccupied,
-        "distressed": distressed,
+    return {
+        "filename": safe_name,
+        "path": str(filepath),
+        "message": f"Uploaded '{safe_name}' successfully."
     }
-    comps_kwargs = {k: v for k, v in comps_kwargs_raw.items() if v is not None}
-
-    async def run_and_save():
-        results = await run_pipeline(properties, job_id, comps_kwargs=comps_kwargs)
-        export_to_csv(results, output_file)
-
-    background_tasks.add_task(run_and_save)
-
-    return ProcessResponse(
-        job_id=job_id,
-        status="queued",
-        total=len(properties),
-        processed=0,
-        flagged_yes=0,
-        flagged_maybe=0,
-        output_file=None,
-        message=f"Uploaded '{safe_name}'. Processing {len(properties)} properties. Poll /job/{job_id}.",
-    )
 
 
 # ── List all jobs ─────────────────────────────────────────────────────────────
