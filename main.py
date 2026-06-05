@@ -146,9 +146,18 @@ async def process_csv(request: ProcessRequest, background_tasks: BackgroundTasks
     job_id = str(uuid.uuid4())[:8]
     output_file = Path(settings.OUTPUT_DIR) / f"results_{job_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
 
+    # Extract comps parameters
+    comps_kwargs = request.model_dump(
+        exclude={"filename", "threshold", "count", "skiprows"},
+        exclude_none=True
+    ) if hasattr(request, "model_dump") else request.dict(
+        exclude={"filename", "threshold", "count", "skiprows"},
+        exclude_none=True
+    )
+
     # Run pipeline in background so the HTTP response returns immediately
     async def run_and_save():
-        results = await run_pipeline(properties, job_id)
+        results = await run_pipeline(properties, job_id, comps_kwargs=comps_kwargs)
         export_to_csv(results, output_file)
 
     background_tasks.add_task(run_and_save)
@@ -298,6 +307,28 @@ async def upload_and_process(
     count: Optional[int] = Form(None),
     skiprows: int = Form(0),
     margin_percent: Optional[float] = Form(None),
+    searchType: Optional[str] = Form(None),
+    minComps: Optional[int] = Form(None),
+    maxComps: Optional[int] = Form(None),
+    miles: Optional[float] = Form(None),
+    sameCity: Optional[bool] = Form(None),
+    useSameTargetCode: Optional[bool] = Form(None),
+    useCode: Optional[str] = Form(None),
+    bedroomsRange: Optional[int] = Form(None),
+    bathroomRange: Optional[int] = Form(None),
+    sqFeetRange: Optional[int] = Form(None),
+    lotSizeRange: Optional[int] = Form(None),
+    onlyPropertiesWithPool: Optional[bool] = Form(None),
+    saleDateRange: Optional[int] = Form(None),
+    saleAmountRangeFrom: Optional[int] = Form(None),
+    saleAmountRangeTo: Optional[int] = Form(None),
+    unitNumberRange: Optional[int] = Form(None),
+    yearBuiltRange: Optional[int] = Form(None),
+    storiesRange: Optional[int] = Form(None),
+    include0SalesAmounts: Optional[bool] = Form(None),
+    includeFullSalesOnly: Optional[bool] = Form(None),
+    ownerOccupied: Optional[str] = Form(None),
+    distressed: Optional[str] = Form(None),
 ):
     """
     Upload a CSV file directly and start processing.
@@ -334,8 +365,34 @@ async def upload_and_process(
         / f"results_{job_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     )
 
+    comps_kwargs_raw = {
+        "searchType": searchType,
+        "minComps": minComps,
+        "maxComps": maxComps,
+        "miles": miles,
+        "sameCity": sameCity,
+        "useSameTargetCode": useSameTargetCode,
+        "useCode": useCode,
+        "bedroomsRange": bedroomsRange,
+        "bathroomRange": bathroomRange,
+        "sqFeetRange": sqFeetRange,
+        "lotSizeRange": lotSizeRange,
+        "onlyPropertiesWithPool": onlyPropertiesWithPool,
+        "saleDateRange": saleDateRange,
+        "saleAmountRangeFrom": saleAmountRangeFrom,
+        "saleAmountRangeTo": saleAmountRangeTo,
+        "unitNumberRange": unitNumberRange,
+        "yearBuiltRange": yearBuiltRange,
+        "storiesRange": storiesRange,
+        "include0SalesAmounts": include0SalesAmounts,
+        "includeFullSalesOnly": includeFullSalesOnly,
+        "ownerOccupied": ownerOccupied,
+        "distressed": distressed,
+    }
+    comps_kwargs = {k: v for k, v in comps_kwargs_raw.items() if v is not None}
+
     async def run_and_save():
-        results = await run_pipeline(properties, job_id)
+        results = await run_pipeline(properties, job_id, comps_kwargs=comps_kwargs)
         export_to_csv(results, output_file)
 
     background_tasks.add_task(run_and_save)

@@ -64,6 +64,7 @@ async def _enrich_one(
     semaphore: asyncio.Semaphore,
     index: int,
     total: int,
+    comps_kwargs: Optional[dict] = None,
 ) -> EnrichedProperty:
     """
     Enrich a single property through all pipeline stages.
@@ -107,6 +108,7 @@ async def _enrich_one(
             comps = await get_comparable_sales(
                 details.latitude, details.longitude, client,
                 attom_id=details.attom_id,
+                **(comps_kwargs or {})
             )
         else:
             enriched.notes = "No lat/lon from ATTOM — skipped comp lookup"
@@ -138,6 +140,7 @@ async def run_pipeline(
     properties: List[RawProperty],
     job_id: str,
     on_progress: Optional[Callable] = None,
+    comps_kwargs: Optional[dict] = None,
 ) -> List[EnrichedProperty]:
     """
     Main pipeline entry point.
@@ -168,7 +171,7 @@ async def run_pipeline(
 
     async with httpx.AsyncClient() as client:
         tasks = [
-            _enrich_one(prop, client, semaphore, i + 1, total)
+            _enrich_one(prop, client, semaphore, i + 1, total, comps_kwargs)
             for i, prop in enumerate(properties)
         ]
 

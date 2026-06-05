@@ -162,6 +162,7 @@ def _parse_comp_properties(property_list: list) -> list[ComparableSale]:
 async def _get_comps_by_propid(
     attom_id: str,
     client: httpx.AsyncClient,
+    **kwargs,
 ) -> list[ComparableSale]:
     """
     Primary comp source: ATTOM Sale Comparables v2 API.
@@ -170,7 +171,7 @@ async def _get_comps_by_propid(
     """
     url = f"{COMPS_BASE_URL}/salescomparables/propid/{attom_id}"
     try:
-        r = await client.get(url, headers=_headers(), timeout=15)
+        r = await client.get(url, headers=_headers(), params=kwargs, timeout=15)
         r.raise_for_status()
         data = r.json()
         return _parse_comp_properties(data.get("property", []))
@@ -186,6 +187,7 @@ async def _get_comps_by_radius(
     client: httpx.AsyncClient,
     radius_miles: Optional[float],
     months: Optional[int],
+    **kwargs,
 ) -> list[ComparableSale]:
     """
     Fallback comp source: area-based sale/snapshot search using lat/lon radius.
@@ -208,6 +210,7 @@ async def _get_comps_by_radius(
         "minSaleAmt":          1,
         "pageSize":            25,
     }
+    params.update(kwargs)
 
     try:
         r = await client.get(url, headers=_headers(), params=params, timeout=15)
@@ -227,6 +230,7 @@ async def get_comparable_sales(
     attom_id: Optional[str] = None,
     radius_miles: Optional[float] = None,
     months: Optional[int] = None,
+    **kwargs,
 ) -> list[ComparableSale]:
     """
     Fetch comparable sales for a property.
@@ -243,12 +247,12 @@ async def get_comparable_sales(
     """
     # Primary: use dedicated Sales Comparables API (v2) if we have an ATTOM ID
     if attom_id:
-        comps = await _get_comps_by_propid(attom_id, client)
+        comps = await _get_comps_by_propid(attom_id, client, **kwargs)
         if comps:
             return comps
 
     # Fallback: radius-based area search
     if lat and lon:
-        return await _get_comps_by_radius(lat, lon, client, radius_miles, months)
+        return await _get_comps_by_radius(lat, lon, client, radius_miles, months, **kwargs)
 
     return []

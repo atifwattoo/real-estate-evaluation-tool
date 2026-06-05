@@ -118,6 +118,28 @@ class ProcessRequest(BaseModel):
         ge=0,
         description="Number of rows to skip before reading the CSV header.",
     )
+    searchType: Optional[str] = None
+    minComps: Optional[int] = None
+    maxComps: Optional[int] = None
+    miles: Optional[float] = None
+    sameCity: Optional[bool] = None
+    useSameTargetCode: Optional[bool] = None
+    useCode: Optional[str] = None
+    bedroomsRange: Optional[int] = None
+    bathroomRange: Optional[int] = None
+    sqFeetRange: Optional[int] = None
+    lotSizeRange: Optional[int] = None
+    onlyPropertiesWithPool: Optional[bool] = None
+    saleDateRange: Optional[int] = None
+    saleAmountRangeFrom: Optional[int] = None
+    saleAmountRangeTo: Optional[int] = None
+    unitNumberRange: Optional[int] = None
+    yearBuiltRange: Optional[int] = None
+    storiesRange: Optional[int] = None
+    include0SalesAmounts: Optional[bool] = None
+    includeFullSalesOnly: Optional[bool] = None
+    ownerOccupied: Optional[str] = None
+    distressed: Optional[str] = None
 
 
 class ProcessResponse(BaseModel):
