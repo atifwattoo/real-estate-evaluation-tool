@@ -22,7 +22,8 @@ from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, BackgroundTasks, HTTPException, UploadFile, File, Form
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 from config import settings
 from modules.models import ProcessRequest, ProcessResponse, JobStatus
@@ -48,6 +49,12 @@ app = FastAPI(
     """,
     version="1.0.0",
 )
+
+# Mount static files for the web UI
+import os
+static_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+if os.path.exists(static_path):
+    app.mount("/ui", StaticFiles(directory=static_path, html=True), name="ui")
 
 
 def _apply_threshold(threshold: Optional[int]):
@@ -89,6 +96,12 @@ def _config_snapshot() -> dict:
 
 # ── Health check ─────────────────────────────────────────────────────────────
 
+@app.get("/", tags=["System"])
+def root():
+    """Redirect to web UI"""
+    return RedirectResponse(url="/ui/index.html")
+
+
 @app.get("/health", tags=["System"])
 def health():
     """Basic health check. Returns API key status so you know if ATTOM is configured."""
@@ -128,6 +141,9 @@ async def process_csv(request: ProcessRequest, background_tasks: BackgroundTasks
 
     # Override threshold if provided
     _apply_threshold(request.threshold)
+
+    # Override margin_percent if provided
+    _apply_margin_percent(request.margin_percent)
 
     # Load and validate CSV
     try:

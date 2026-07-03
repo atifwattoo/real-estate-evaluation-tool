@@ -1,0 +1,21 @@
+Parcel ID,Address,Investment Flag,Estimated Value,Confidence,Comp Count,Price/sqft,Sqft,Beds,Baths,Year Built,Assessed Value,Last Sale Price,Last Sale Date,Prop Type,Status,Notes
+31364160230000,"4 APPLE LN, PARK FOREST, IL, 60466",NO,N/A,NONE,0,N/A,,2.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+16111280320000,"438 N AVERS AVE, CHICAGO, IL, 60624",NO,N/A,NONE,0,N/A,,4.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+15141030010000,"520 MADISON ST, MAYWOOD, IL, 60153",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,partial,No comparable sales found in radius
+29121100660000,"332 MADISON AVE, CALUMET CITY, IL, 60409",NO,N/A,NONE,0,N/A,,3.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+16131100010000,"121 S SACRAMENTO AVE, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,3.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+30171030380000,"216 154TH PL, CALUMET CITY, IL, 60409",NO,N/A,NONE,0,N/A,,3.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+16111180300000,"524 N HARDING AVE, CHICAGO, IL, 60624",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,partial,No comparable sales found in radius
+31364080270000,"338 OSWEGO ST, PARK FOREST, IL, 60466",NO,N/A,NONE,0,N/A,,2.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+16142220010000,"341 S CHRISTINA AVE, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,12.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+16131010220000,"12 S WHIPPLE ST, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,partial,No comparable sales found in radius
+16142240020000,"417 S CENTRAL PARK AVE, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+25153200070000,"18 E 110TH PL, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+29122020130000,"283 CRANDON AVE, CALUMET CITY, IL, 60409",NO,N/A,NONE,0,N/A,,6.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+30182250310000,"790 BUFFALO AVE, CALUMET CITY, IL, 60409",NO,N/A,NONE,0,N/A,,4.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+16142140210000,"323 S CENTRAL PARK AVE, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+29122080410000,"321 PAXTON AVE, CALUMET CITY, IL, 60409",NO,N/A,NONE,0,N/A,,2.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+16131010230000,"14 S WHIPPLE ST, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,3.0,,,N/A,N/A,,,partial,No comparable sales found in radius
+31042000050000,"5100 183RD ST, TINLEY PARK, IL 60477",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,failed,"HTTP 400: {""status"":{""version"":""1.0.0"",""code"":400,""msg"":""SuccessWithoutResult"",""total"":0,""responseDateTime"":""2"
+16111270420000,"418 N SPRINGFIELD AVE, CHICAGO, IL 60601",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,partial,No comparable sales found in radius
+29081010390000,"33 E 144TH ST, HARVEY, IL 60426",NO,N/A,NONE,0,N/A,,,,,N/A,N/A,,,partial,No comparable sales found in radius

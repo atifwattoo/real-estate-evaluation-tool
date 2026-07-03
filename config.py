@@ -34,6 +34,14 @@ class Settings(BaseSettings):
     MIN_COMPS_HIGH_CONF: int = 3      # Need 3+ comps for HIGH confidence
     MIN_COMPS_MED_CONF: int = 1       # Need 1+ for MEDIUM confidence
 
+    # ── Dynamic radius & sqft tolerance (Client requirements) ─
+    COMP_RADIUS_INITIAL: float = 0.5      # Start with 0.5 mile radius
+    COMP_RADIUS_EXPANDED: float = 1.0     # Expand to 1 mile if < 5 comps
+    MIN_COMPS_FOR_RADIUS_EXPANSION: int = 5  # Need 5 comps to stop expanding
+    SQFT_TIER1_PERCENT: float = 0.10      # 10% sqft tolerance for YES flag
+    SQFT_TIER2_PERCENT: float = 0.20      # 20% sqft tolerance for MAYBE flag
+    BEDS_BATHS_RANGE: int = 1             # ±1 range for beds/baths matching
+
     # ── Processing ────────────────────────────────────────────
     API_DELAY_SECONDS: float = 0.3    # Pause between ATTOM calls (rate limit)
     MAX_CONCURRENT: int = 5           # Async workers at once

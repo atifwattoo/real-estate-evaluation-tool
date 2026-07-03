@@ -153,10 +153,80 @@ def _parse_comp_properties(property_list: list) -> list[ComparableSale]:
                 sale_price = float(sale_amt),
                 sale_date  = prop.get("sale", {}).get("salesearchdate"),
                 sqft       = prop.get("building", {}).get("size", {}).get("universalsize"),
+                beds       = prop.get("building", {}).get("rooms", {}).get("beds"),
+                baths      = prop.get("building", {}).get("rooms", {}).get("bathstotal"),
             ))
         except (KeyError, TypeError, ValueError):
             continue
     return comps
+
+
+def filter_comps_by_similarity(
+    comps: list[ComparableSale],
+    subject_sqft: Optional[float] = None,
+    subject_beds: Optional[int] = None,
+    subject_baths: Optional[float] = None,
+) -> tuple[list[ComparableSale], list[ComparableSale]]:
+    """
+    Filter comparable properties by similarity to subject property.
+    
+    Returns (tier1_comps, tier2_comps):
+        - tier1: sqft within 10% OR same beds/baths
+        - tier2: sqft within 10-20% OR beds/baths ±1 (excluding tier1)
+    
+    Client requirements:
+        YES flag: 3+ tier1 comps with avg value ≥ $300K
+        MAYBE flag: 3+ tier2 comps with avg value ≥ $300K
+    """
+    tier1 = []
+    tier2 = []
+    tier1_indices = set()
+
+    for i, comp in enumerate(comps):
+        # Skip comps with missing critical data
+        if comp.sale_price <= 0:
+            continue
+
+        in_tier1 = False
+        in_tier2 = False
+
+        # ── Tier 1: sqft within 10% ──
+        if subject_sqft and comp.sqft and comp.sqft > 0:
+            sqft_min_10 = subject_sqft * (1 - settings.SQFT_TIER1_PERCENT)
+            sqft_max_10 = subject_sqft * (1 + settings.SQFT_TIER1_PERCENT)
+            if sqft_min_10 <= comp.sqft <= sqft_max_10:
+                in_tier1 = True
+
+        # ── Tier 1: same beds/baths ──
+        if subject_beds is not None and subject_baths is not None:
+            if comp.beds is not None and comp.baths is not None:
+                if comp.beds == subject_beds and comp.baths == subject_baths:
+                    in_tier1 = True
+
+        if in_tier1:
+            tier1.append(comp)
+            tier1_indices.add(i)
+            continue
+
+        # ── Tier 2: sqft within 10-20% ──
+        if subject_sqft and comp.sqft and comp.sqft > 0:
+            sqft_min_20 = subject_sqft * (1 - settings.SQFT_TIER2_PERCENT)
+            sqft_max_20 = subject_sqft * (1 + settings.SQFT_TIER2_PERCENT)
+            if sqft_min_20 <= comp.sqft <= sqft_max_20:
+                in_tier2 = True
+
+        # ── Tier 2: beds/baths ±1 ──
+        if subject_beds is not None and subject_baths is not None:
+            if comp.beds is not None and comp.baths is not None:
+                beds_diff = abs(comp.beds - subject_beds)
+                baths_diff = abs(comp.baths - subject_baths)
+                if beds_diff <= settings.BEDS_BATHS_RANGE and baths_diff <= settings.BEDS_BATHS_RANGE:
+                    in_tier2 = True
+
+        if in_tier2:
+            tier2.append(comp)
+
+    return tier1, tier2
 
 
 async def _get_comps_by_propid(
@@ -256,3 +326,74 @@ async def get_comparable_sales(
         return await _get_comps_by_radius(lat, lon, client, radius_miles, months, **kwargs)
 
     return []
+
+
+async def get_comparable_sales_with_dynamic_radius(
+    lat: float,
+    lon: float,
+    client: httpx.AsyncClient,
+    attom_id: Optional[str] = None,
+    subject_sqft: Optional[float] = None,
+    subject_beds: Optional[int] = None,
+    subject_baths: Optional[float] = None,
+    months: Optional[int] = None,
+    **kwargs,
+) -> list[ComparableSale]:
+    """
+    Fetch comparable sales with dynamic radius expansion per client requirements.
+    
+    Strategy:
+      1. Try salescomparables/propid/{attomId} first (if available)
+      2. If not enough comps, use radius search:
+         - Start with 0.5 mile radius
+         - If < MIN_COMPS_FOR_RADIUS_EXPANSION comps, expand to 1 mile
+      3. Filter comps by similarity to subject property
+    
+    Client requirements:
+      - If 5 properties with same sqft or beds/baths within 0.5 mile -> use them
+      - If < 5 comps -> extend search radius to 1 mile
+      - If still < 5 comps -> expand sqft tolerance to 20%
+    """
+    months_back = months or settings.COMP_MONTHS
+    
+    # Step 1: Try propid-based comps first
+    if attom_id:
+        comps = await _get_comps_by_propid(attom_id, client, **kwargs)
+        if comps and len(comps) >= settings.MIN_COMPS_FOR_RADIUS_EXPANSION:
+            return comps
+
+    # Step 2: Dynamic radius search
+    if lat and lon:
+        # Try 0.5 mile first
+        comps_05 = await _get_comps_by_radius(
+            lat, lon, client, settings.COMP_RADIUS_INITIAL, months_back, **kwargs
+        )
+        
+        # Filter by similarity
+        tier1_05, tier2_05 = filter_comps_by_similarity(
+            comps_05, subject_sqft, subject_beds, subject_baths
+        )
+        
+        # If we have enough tier1 comps at 0.5 mile, use them
+        if len(tier1_05) >= settings.MIN_COMPS_FOR_RADIUS_EXPANSION:
+            return comps_05
+        
+        # If not enough, expand to 1 mile
+        comps_1 = await _get_comps_by_radius(
+            lat, lon, client, settings.COMP_RADIUS_EXPANDED, months_back, **kwargs
+        )
+        
+        # Combine and filter
+        all_comps = comps_05 + comps_1
+        # Remove duplicates by address
+        seen_addresses = set()
+        unique_comps = []
+        for comp in all_comps:
+            if comp.address not in seen_addresses:
+                seen_addresses.add(comp.address)
+                unique_comps.append(comp)
+        
+        return unique_comps
+
+    # Fallback: return whatever we got from propid
+    return comps if attom_id else []

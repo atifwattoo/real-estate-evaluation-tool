@@ -22,7 +22,7 @@ from typing import List, Callable, Optional
 
 from config import settings
 from modules.models import RawProperty, EnrichedProperty, InvestmentFlag, ConfidenceLevel
-from modules.attom_client import get_property_detail, get_comparable_sales
+from modules.attom_client import get_property_detail, get_comparable_sales_with_dynamic_radius
 from modules.valuation import estimate_value
 
 
@@ -105,16 +105,24 @@ async def _enrich_one(
         # ── Stage 2: Comparable sales (needs lat/lon or attom_id) ────
         comps = []
         if details.latitude and details.longitude:
-            comps = await get_comparable_sales(
+            comps = await get_comparable_sales_with_dynamic_radius(
                 details.latitude, details.longitude, client,
                 attom_id=details.attom_id,
+                subject_sqft=enriched.sqft,
+                subject_beds=enriched.beds,
+                subject_baths=enriched.baths,
                 **(comps_kwargs or {})
             )
         else:
             enriched.notes = "No lat/lon from ATTOM — skipped comp lookup"
 
         # ── Stage 3: Valuation ────────────────────────────────
-        valuation = estimate_value(comps, subject_sqft=enriched.sqft)
+        valuation = estimate_value(
+            comps,
+            subject_sqft=enriched.sqft,
+            subject_beds=enriched.beds,
+            subject_baths=enriched.baths,
+        )
 
         enriched.estimated_value   = valuation.estimated_value
         enriched.investment_flag   = valuation.investment_flag

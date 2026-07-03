@@ -11,7 +11,6 @@ class InvestmentFlag(str, Enum):
     YES   = "YES"
     NO    = "NO"
     MAYBE = "MAYBE"   # In the configured threshold margin zone
-    UNKNOWN = "UNKNOWN"  # Could not estimate
 
 
 class ConfidenceLevel(str, Enum):
@@ -53,6 +52,8 @@ class ComparableSale(BaseModel):
     sale_price: float
     sale_date:  Optional[str]  = None
     sqft:       Optional[float] = None
+    beds:       Optional[int]   = None
+    baths:      Optional[float] = None
     distance_miles: Optional[float] = None
 
 
@@ -60,7 +61,7 @@ class ComparableSale(BaseModel):
 
 class ValuationResult(BaseModel):
     estimated_value: Optional[float] = None
-    investment_flag: InvestmentFlag   = InvestmentFlag.UNKNOWN
+    investment_flag: InvestmentFlag   = InvestmentFlag.NO
     confidence:      ConfidenceLevel  = ConfidenceLevel.NONE
     comp_count:      int              = 0
     price_per_sqft:  Optional[float] = None
@@ -92,7 +93,7 @@ class EnrichedProperty(BaseModel):
 
     # Valuation
     estimated_value:   Optional[float] = None
-    investment_flag:   InvestmentFlag  = InvestmentFlag.UNKNOWN
+    investment_flag:   InvestmentFlag  = InvestmentFlag.NO
     confidence:        ConfidenceLevel = ConfidenceLevel.NONE
     comp_count:        int             = 0
     price_per_sqft:    Optional[float] = None
@@ -108,6 +109,7 @@ class EnrichedProperty(BaseModel):
 class ProcessRequest(BaseModel):
     filename: str = Field(..., description="CSV filename in the input/ folder")
     threshold: Optional[int] = Field(None, gt=0, description="Override default $300K threshold")
+    margin_percent: Optional[float] = Field(None, description="Margin % around threshold (e.g. 0.25 or 25). Optional.")
     count: Optional[int] = Field(
         None,
         ge=0,
