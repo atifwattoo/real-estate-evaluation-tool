@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Valuation Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1em;
+            opacity: 0.95;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-box {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .sidebar-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.92em;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 9px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.92em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="password"]:focus,
+        input[type="file"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-helper {
+            font-size: 0.80em;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .form-section {
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .form-row.three {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.92em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e8e8;
+        }
+
+        .alert {
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 0.88em;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .progress-area {
+            display: none;
+        }
+
+        .progress-area.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .results-area {
+            display: none;
+        }
+
+        .results-area.active {
+            display: block;
+        }
+
+        .result-stat {
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 0.80em;
+            color: #999;
+            margin-bottom: 3px;
+        }
+
+        .result-value {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload-area:hover {
+            border-color: #667eea;
+            background: #f9f9f9;
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .upload-text {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .file-name {
+            font-size: 0.80em;
+            color: #667eea;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row.three {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row.three {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .card, .sidebar-box {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 Real Estate Valuation Tool</h1>
+            <p>Analyze properties and get investment flags</p>
+        </header>
+
+        <div class="layout">
+            <!-- MAIN FORM -->
+            <div class="card">
+                <form id="processForm">
+                    <div id="alerts"></div>
+
+                    <!-- VALUATION SETTINGS -->
+                    <div class="form-section">
+                        <div class="section-title">⚙️ Valuation Settings</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="threshold">Threshold ($) *</label>
+                                <input type="number" id="threshold" value="300000" min="1000" required>
+                                <div class="input-helper">Investment decision threshold</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="marginPercent">Margin %</label>
+                                <input type="number" id="marginPercent" value="25" min="0" max="100" step="0.5">
+                                <div class="input-helper">MAYBE zone around threshold</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="count">Records to Process</label>
+                                <input type="number" id="count" value="20" min="0">
+                                <div class="input-helper">0 = process all</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="skiprows">Skip Rows</label>
+                                <input type="number" id="skiprows" value="4" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COMPARABLE SALES -->
+                    <div class="form-section">
+                        <div class="section-title">📍 Comparable Sales</div>
+                        <div class="form-row three">
+                            <div class="form-group">
+                                <label for="searchType">Search Type</label>
+                                <select id="searchType">
+                                    <option selected>Radius</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="miles">Radius (miles)</label>
+                                <input type="number" id="miles" value="5" min="0.1" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="saleDateRange">Date Range (months)</label>
+                                <input type="number" id="saleDateRange" value="12" min="1">
+                            </div>
+                        </div>
+                        <div class="form-row three">
+                            <div class="form-group">
+                                <label for="minComps">Min Comps</label>
+                                <input type="number" id="minComps" value="1" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxComps">Max Comps</label>
+                                <input type="number" id="maxComps" value="10" min="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROPERTY FILTERS -->
+                    <div class="form-section">
+                        <div class="section-title">🏠 Property Filters</div>
+                        <div class="form-row three">
+                            <div class="form-group">
+                                <label for="bedroomsRange">Bedrooms (±)</label>
+                                <input type="number" id="bedroomsRange" value="2" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="bathroomRange">Bathrooms (±)</label>
+                                <input type="number" id="bathroomRange" value="2" min="0" step="0.5">
+                            </div>
+                            <div class="form-group">
+                                <label for="yearBuiltRange">Year Built (±)</label>
+                                <input type="number" id="yearBuiltRange" value="10" min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sqFeetRange">Sq Feet Range</label>
+                                <input type="number" id="sqFeetRange" value="600" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="lotSizeRange">Lot Size Range</label>
+                                <input type="number" id="lotSizeRange" value="2000" min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ownerOccupied">Owner Occupied</label>
+                                <select id="ownerOccupied">
+                                    <option selected>Both</option>
+                                    <option>OwnerOccupied</option>
+                                    <option>AbsenteeOwner</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="distressed">Distressed</label>
+                                <select id="distressed">
+                                    <option selected>IncludeDistressed</option>
+                                    <option>ExcludeDistressed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">🚀 Start Processing</button>
+                </form>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <!-- FILE UPLOAD -->
+                <div class="sidebar-box">
+                    <div class="sidebar-title">📁 CSV File</div>
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <input type="file" id="csvFile" accept=".csv" />
+                        <div class="upload-text">Click to upload or drag & drop</div>
+                        <div class="file-name" id="fileName"></div>
+                    </div>
+                    <div class="input-helper" style="margin-top: 8px;">Select CSV from input/ folder</div>
+                </div>
+
+                <!-- API KEY -->
+                <div class="sidebar-box">
+                    <div class="sidebar-title">🔑 ATTOM API Key</div>
+                    <div class="form-group">
+                        <input type="password" id="apiKey" placeholder="Paste your API key">
+                        <div class="input-helper">Stored locally in your browser</div>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="saveApiKey()">Save Key</button>
+                </div>
+
+                <!-- PROGRESS -->
+                <div class="sidebar-box">
+                    <div class="sidebar-title">⏳ Progress</div>
+                    <div class="progress-area" id="progressArea">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText"></div>
+                    </div>
+                    <div style="text-align: center; color: #999; font-size: 0.85em;" id="noProgressText">
+                        Ready to start
+                    </div>
+                </div>
+
+                <!-- RESULTS -->
+                <div class="sidebar-box">
+                    <div class="sidebar-title">📊 Results</div>
+                    <div class="results-area" id="resultsArea">
+                        <div class="result-stat">
+                            <div class="result-label">YES Flags</div>
+                            <div class="result-value" id="yesCount">0</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-label">MAYBE Flags</div>
+                            <div class="result-value" id="maybeCount">0</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-label">NO Flags</div>
+                            <div class="result-value" id="noCount">0</div>
+                        </div>
+                        <button type="button" class="btn-primary" onclick="downloadResults()" style="margin-top: 12px;">
+                            📥 Download CSV
+                        </button>
+                    </div>
+                    <div style="text-align: center; color: #999; font-size: 0.85em;" id="noResultsText">
+                        No results yet
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        let currentJobId = null;
+
+        // Form submission
+        document.getElementById('processForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const filename = document.getElementById('csvFile').files[0]?.name || 'CCLBA_data_04_2026.csv';
+            
+            const formData = {
+                filename: filename,
+                threshold: parseInt(document.getElementById('threshold').value),
+                margin_percent: parseFloat(document.getElementById('marginPercent').value) || null,
+                count: parseInt(document.getElementById('count').value) || null,
+                skiprows: parseInt(document.getElementById('skiprows').value),
+                searchType: document.getElementById('searchType').value,
+                minComps: parseInt(document.getElementById('minComps').value),
+                maxComps: parseInt(document.getElementById('maxComps').value),
+                miles: parseFloat(document.getElementById('miles').value),
+                saleDateRange: parseInt(document.getElementById('saleDateRange').value),
+                bedroomsRange: parseInt(document.getElementById('bedroomsRange').value),
+                bathroomRange: parseFloat(document.getElementById('bathroomRange').value),
+                yearBuiltRange: parseInt(document.getElementById('yearBuiltRange').value),
+                sqFeetRange: parseInt(document.getElementById('sqFeetRange').value),
+                lotSizeRange: parseInt(document.getElementById('lotSizeRange').value),
+                ownerOccupied: document.getElementById('ownerOccupied').value,
+                distressed: document.getElementById('distressed').value,
+                sameCity: false,
+                useSameTargetCode: true,
+                useCode: null,
+                onlyPropertiesWithPool: false,
+                saleAmountRangeFrom: null,
+                saleAmountRangeTo: null,
+                unitNumberRange: null,
+                include0SalesAmounts: true,
+                includeFullSalesOnly: false,
+            };
+
+            try {
+                showAlert('Processing...', 'info');
+                
+                const response = await fetch(`${API_BASE}/process`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    showAlert('Error: ' + error.detail, 'error');
+                    return;
+                }
+
+                const result = await response.json();
+                currentJobId = result.job_id;
+                
+                showAlert(`Job started: ${result.job_id}`, 'success');
+                document.getElementById('noProgressText').style.display = 'none';
+                document.getElementById('progressArea').classList.add('active');
+                
+                pollStatus();
+            } catch (error) {
+                showAlert('Error: ' + error.message, 'error');
+            }
+        });
+
+        // Poll job status
+        async function pollStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/job/${currentJobId}`);
+                const job = await response.json();
+
+                document.getElementById('progressFill').style.width = job.progress + '%';
+                document.getElementById('progressText').textContent = 
+                    `${job.processed}/${job.total} (${job.progress}%)`;
+
+                if (job.status === 'done') {
+                    showResults();
+                } else if (job.status === 'failed') {
+                    showAlert('Job failed: ' + job.message, 'error');
+                } else {
+                    setTimeout(pollStatus, 2000);
+                }
+            } catch (error) {
+                console.error('Polling error:', error);
+            }
+        }
+
+        // Show results
+        async function showResults() {
+            try {
+                const response = await fetch(`${API_BASE}/summary/${currentJobId}`);
+                const summary = await response.json();
+
+                document.getElementById('yesCount').textContent = summary.flagged_yes;
+                document.getElementById('maybeCount').textContent = summary.flagged_maybe || 0;
+                document.getElementById('noCount').textContent = summary.flagged_no;
+
+                document.getElementById('noResultsText').style.display = 'none';
+                document.getElementById('resultsArea').classList.add('active');
+                showAlert('Processing complete!', 'success');
+            } catch (error) {
+                showAlert('Error fetching results: ' + error.message, 'error');
+            }
+        }
+
+        // Download results
+        function downloadResults() {
+            window.location.href = `${API_BASE}/results/${currentJobId}`;
+        }
+
+        // Show alert
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('alerts');
+            alertDiv.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            setTimeout(() => { alertDiv.innerHTML = ''; }, 5000);
+        }
+
+        // File upload handling
+        const fileArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('csvFile');
+
+        fileArea.addEventListener('click', () => fileInput.click());
+        fileArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileArea.style.background = '#f0f0f0';
+        });
+        fileArea.addEventListener('dragleave', () => {
+            fileArea.style.background = '';
+        });
+        fileArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileArea.style.background = '';
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                updateFileName();
+            }
+        });
+
+        fileInput.addEventListener('change', updateFileName);
+
+        function updateFileName() {
+            const fileName = document.getElementById('csvFile').files[0]?.name;
+            if (fileName) {
+                document.getElementById('fileName').textContent = fileName;
+            }
+        }
+
+        // API Key management
+        function saveApiKey() {
+            const key = document.getElementById('apiKey').value;
+            if (key) {
+                localStorage.setItem('attomApiKey', key);
+                showAlert('API Key saved locally', 'success');
+            }
+        }
+
+        // Load saved API key on page load
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('attomApiKey');
+            if (saved) {
+                document.getElementById('apiKey').value = saved;
+            }
+        });
+    </script>
+</body>
+</html>
